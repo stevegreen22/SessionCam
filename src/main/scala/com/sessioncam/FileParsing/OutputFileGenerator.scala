@@ -18,7 +18,7 @@ case class OutputFileGenerator(saveFileLocation: String = "/Users/steveGreen/Dev
   object OutputFileGenerator {
 
     private var completeFilename = saveFileLocation + "/" + fileName + fileExtension
-
+    private var version = 1
 
     //Version 4
     def createOutputFile(): Unit = {
@@ -46,29 +46,24 @@ case class OutputFileGenerator(saveFileLocation: String = "/Users/steveGreen/Dev
     private def createNewFilename: Unit = {
 
       val RegexPattern = "(.+(?=\\/))(\\/)(.+(?=\\.))(.*)".r
-      val RegexPattern(dir, delimiter, file, ext) = "direct/ory/filename(1).ext"
+      val RegexPattern(dir, delimiter, file, ext) = completeFilenamegit
       println(dir + " - "+ delimiter + " - " + file + " - " + ext)
 
-      val RegexUpdated = "([\\d]{1,2})".r
-
-      file match {
-        case RegexUpdated(_*) => println("dsdfsdfdsdsdsf")
-        case _ => println(s"filename $file doesn't have an updated version")}
-
+      val RegexUpdated = "([a-zA-Z0-9]+)([(\\d)]+)".r
+      val updatedFilename = RegexUpdated
+        file match {
+          case updatedFilename(_*) =>
+            //shit!  will need to cache the incoming filename to make this in any way useful.
+            //this will only make sense if we generate multiple files within the same instance
+            //val updateVersion = file.substring(file.lastIndexOf("(")+1, file.length-1)
+            //version = updateVersion.toInt + 1
+            version += 1
+            fileName = s"$fileName($version)" //<- loving this.
+          case _ => fileName = s"$fileName($version)"
+      }
       //setter method for completeFilename?
-      //completeFilename = saveFileLocation + "/" + fileName + fileExtension
+      completeFilename = saveFileLocation + "/" + fileName + fileExtension
+      logger.info(s"Creating a new filename and saving as ${completeFilename}")
     }
-    //if it exists, we want to append the (1) standard to it.
-    //first need to check if the apended exists
-    //need to get the substring within () at the end, assuming that there isn't a () in the name already
-    //if they are (*) then we need to parse that int
-    //increment the int
-    //rename it
-    //assuming this is the first rename
-    //add (1) to the end of the filename
-
-
-
-
   }
 }
