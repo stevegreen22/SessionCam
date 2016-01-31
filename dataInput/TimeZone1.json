@@ -2,31 +2,63 @@
   "data": [
     {
       "name": "A",
-      "timezone": "UTC",
-      "date": "27/01/2016",
-      "time": "14:35",
-      "jodaDate": "2016-01-27T14:33:37.533Z"
+      "timezone": "Etc/UTC",
+      "jodaDate": "2016-01-12T14:33:37.533"
+    },
+    {
+      "name": "C",
+      "timezone": "Etc/UTC",
+      "jodaDate": "2016-01-21T10:33:37.533"
+    },
+    {
+      "name": "L",
+      "timezone": "Etc/UTC",
+      "jodaDate": "2015-12-27T10:33:37.533"
     },
     {
       "name": "B",
       "timezone": "CET",
-      "date" : "27/01/2016",
-      "time": "14:35",
-      "jodaDate": "2015-11-23T14:33:37.533Z"
-    },
-    {
-      "name": "C",
-      "timezone": "UTC",
-      "date": "27/01/2016",
-      "time": "14:35",
-      "jodaDate": "2016-05-27T14:33:37.533Z"
+      "jodaDate": "2015-11-23T14:33:37.533"
     },
     {
       "name": "D",
       "timezone": "CET",
-      "date" : "27/01/2016",
-      "time": "14:35",
-      "jodaDate": "2015-06-23T14:33:37.533Z"
+      "jodaDate": "2015-06-23T14:33:37.533"
+    },
+    {
+      "name": "E",
+      "timezone": "America/Argentina/Cordoba",
+      "jodaDate": "2015-10-23T04:33:57.533"
+    },
+    {
+      "name": "CA",
+      "timezone": "America/New_York",
+      "jodaDate": "2016-05-27T14:33:37.533"
+    },
+    {
+      "name": "DD",
+      "timezone": "America/Bahia_Banderas",
+      "jodaDate": "2015-10-28T12:33:37.533"
+    },
+    {
+      "name": "BS",
+      "timezone": "Pacific/Tahiti",
+      "jodaDate": "2015-05-23T05:53:37.533"
+    },
+    {
+      "name": "SC",
+      "timezone": "Pacific/Apia",
+      "jodaDate": "2015-03-27T12:23:37.533"
+    },
+    {
+      "name": "LINT",
+      "timezone": "Asia/Harbin",
+      "jodaDate": "2015-02-13T23:23:23.533"
+    },
+    {
+      "name": "SA",
+      "timezone": "Australia/Hobart",
+      "jodaDate": "2015-02-13T01:23:23.533"
     }
   ]
 }

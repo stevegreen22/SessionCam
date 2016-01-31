@@ -2,24 +2,18 @@
   "data": [
     {
       "name": "X",
-      "timezone": "CET",
-      "date": "27/01/2016",
-      "time": "14:35",
-      "jodaDate": "2016-01-27T14:33:37.533Z"
+      "timezone": "Antarctica/McMurdo",
+      "jodaDate": "2016-01-08T14:33:37.533"
     },
     {
       "name": "Y",
-      "timezone": "UTC",
-      "date" : "27/01/2016",
-      "time": "14:35",
-      "jodaDate": "2015-11-23T14:33:37.533Z"
+      "timezone": "Etc/UTC",
+      "jodaDate": "2015-11-23T14:33:37.533"
     },
     {
       "name": "Z",
-      "timezone": "CET",
-      "date": "27/01/2016",
-      "time": "14:35",
-      "jodaDate": "2016-05-27T14:33:37.533Z"
+      "timezone": "Europe/Gibraltar",
+      "jodaDate": "2015-05-27T14:33:37.533"
     }
   ]
 }

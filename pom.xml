@@ -73,6 +73,14 @@
       <version>3.3.0</version>
     </dependency>
 
+    <!--di-->
+    <dependency>
+      <groupId>com.softwaremill.macwire</groupId>
+      <artifactId>runtime_2.10</artifactId>
+      <version>0.5</version>
+    </dependency>
+
+
 
     <dependency>
       <groupId>org.scala-lang</groupId>

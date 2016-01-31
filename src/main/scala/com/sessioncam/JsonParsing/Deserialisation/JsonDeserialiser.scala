@@ -10,7 +10,7 @@ import org.json4s.native.JsonMethods._
 /**
   * Created by SteveGreen on 29/01/2016.
   */
-object JsonDeserialiser extends LazyLogging with CustomJsonFormats{
+class JsonDeserialiser extends LazyLogging with CustomJsonFormats{
 
   /**
     * Method for extraction the JSON data from a given file
