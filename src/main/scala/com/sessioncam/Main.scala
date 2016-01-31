@@ -19,7 +19,7 @@ object SessionCamProject extends SimpleSwingApplication with LazyLogging{
 
   private var listOfTimezones = List[TimezoneDetails]()
   private val FILTER_TIMEZONE = "Etc/UTC" //UTC -> ETC => +5 // UTC == GMT
-  private val TO_TIMEZONE = "Etc/GMT-5" //GMT+0500
+  private val TO_TIMEZONE = "Pacific/Marquesas"//Etc/GMT-5" //GMT+0500
   private val DEFAULT_INPUT_LOCATION = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataInput"
 
   private lazy val FILE_READER_INSTANCE = new InputFileParser
@@ -53,15 +53,15 @@ object SessionCamProject extends SimpleSwingApplication with LazyLogging{
       columns = 50
     }
     object defaultInputLocation extends TextField {
-      text = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataInput"
+      text = DEFAULT_INPUT_LOCATION
       columns = 50
     }
     object defaultFilter extends TextField {
-      text = "Etc/UTC"
+      text = FILTER_TIMEZONE
       columns = 5
     }
     object defaultConversion extends TextField {
-      text = "Etc/GMT-5"
+      text = TO_TIMEZONE
       columns = 10
     }
 
