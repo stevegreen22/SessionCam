@@ -47,7 +47,6 @@ case class OutputFileGenerator(saveFileLocation: String = "/Users/steveGreen/Dev
 
       val RegexPattern = "(.+(?=\\/))(\\/)(.+(?=\\.))(.*)".r
       val RegexPattern(dir, delimiter, file, ext) = completeFilename
-      println(dir + " - "+ delimiter + " - " + file + " - " + ext)
 
       val RegexUpdated = "([a-zA-Z0-9]+)([(\\d)]+)".r
       val updatedFilename = RegexUpdated

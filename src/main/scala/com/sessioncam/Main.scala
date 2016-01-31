@@ -2,10 +2,9 @@ package com.sessioncam
 
 import java.io.FileNotFoundException
 
-import com.sessioncam.FileParsing.InputFileParser._
-import com.sessioncam.FileParsing.OutputFileGenerator
+import com.sessioncam.FileParsing.{InputFileParser, OutputFileGenerator}
 import com.sessioncam.customfilters.CustomJsonFilters.createTimezoneFilteredList
-import com.sessioncam.jsonparsing.conversion.DateConvertor.convertTimezone
+import com.sessioncam.jsonparsing.conversion.DateConvertor
 import com.sessioncam.jsonparsing.deserialisation.JsonDeserialiser.createTimezoneListFromJsonFile
 import com.sessioncam.jsonparsing.serialisation.JsonSerialiser._
 import com.sessioncam.model.TimezoneDetails
@@ -16,26 +15,27 @@ import com.typesafe.scalalogging.LazyLogging
   */
 object Main extends LazyLogging {
 
-  private val filterTimezone = "cet" //todo: pull this in from args? how many args are we going to have?!
   private var listOfTimezones = List[TimezoneDetails]()
+  private val FILTER_TIMEZONE = "cet" //todo: pull this in from args? how many args are we going to have?!
+  private val FROM_TIMEZONE = "cet"
+  private val TO_TIMEZONE = "utc"
+  private val DEFAULT_INPUT_LOCATION = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataInput"
 
-  private val fromTimezone = "cet"
-  private val toTimezone = "utc"
-  private val defaultInputLocation = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataInput"
+  private val FILE_READER_INSTANCE = new InputFileParser
+  private val DATE_CONVERTER_INSTANCE = new DateConvertor
 
   def main(args: Array[String]) {
     try{
-      val files = getListOfFilesFromDirectory(defaultInputLocation, List("json"))
-      //val files = getListOfFilesFromDirectory("/home/steveg/DevResources/OtherProjects/SessionCam/data", okFileExtensions)
+      val files = FILE_READER_INSTANCE.getListOfFilesFromDirectory(DEFAULT_INPUT_LOCATION, List("json"))
       if (files.nonEmpty) {
         listOfTimezones = createTimezoneListFromJsonFile(files)
 
-        logger.info(s"Attempting to filter by $filterTimezone")
+        logger.info(s"Attempting to filter by $FILTER_TIMEZONE")
         val cetTimezoneDetails = createTimezoneFilteredList(listOfTimezones, "cet")
 
-        logger.info(s"Converting the timezone from $fromTimezone to $toTimezone")
+        logger.info(s"Converting the timezone from $FROM_TIMEZONE to $TO_TIMEZONE")
           for (timezone <- cetTimezoneDetails) {
-            timezone.jodaDate = convertTimezone(timezone.jodaDate, fromTimezone, toTimezone)
+            timezone.jodaDate = DATE_CONVERTER_INSTANCE.convertTimezone(timezone.jodaDate, FROM_TIMEZONE, TO_TIMEZONE)
           }
 
         cetTimezoneDetails.foreach(println)
@@ -64,6 +64,8 @@ object Main extends LazyLogging {
 //Done: Use this complete list to create an aggregated collection
 //Done: Pass the items of the list through the time converter to adjust the time
 //Done: This updated list can now be parsed into an output JSON file
-//Todo: Update main method so jar can be run from terminal
+//Done: Update main method so jar can be run from terminal
+//Todo: Accept args from command line
+//Todo: TESTS!!!!
 //Todo: save a list of the timezones found in the json, run them all through the converter changing as neccesary
 

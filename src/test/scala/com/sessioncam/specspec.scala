@@ -4,19 +4,14 @@ import java.util.Date
 
 import org.joda.time.DateTime
 import org.json4s.native.Serialization
+import org.junit.runner.RunWith
 import org.scalatest.FlatSpec
-/**
-  * Created by SteveGreen on 29/01/2016.
-  */
-class specspec {
-
-}
-
-
 import java.text.SimpleDateFormat
 
+import org.scalatest.junit.JUnitRunner
 
 
+@RunWith(classOf[JUnitRunner])
 class WorkspaceSpec extends FlatSpec with CustomJsonFormats {
   it should "do" in {
     val d1 = new DateTime()

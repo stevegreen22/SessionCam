@@ -11,7 +11,7 @@ import org.joda.time.DateTime
   *
   * Note: Currently only UTC <=> ECT (+7) is supported.
   */
-object DateConvertor extends LazyLogging {
+class DateConvertor extends LazyLogging {
 
   /**
     * Convert method will attempt to convert from UTC to ECT and vice versa depending
@@ -25,9 +25,7 @@ object DateConvertor extends LazyLogging {
 
     if (from == "" || to == "") {
       throw new IllegalArgumentException("Date Conversion Failed: From and To must be set")
-    } else if (date.equals(null)) {
-      throw new NullPointerException("Date Conversion Failed: DateTime must not be null")
-    } else {
+    }  else {
       //Todo: generify this so that we can utilise to and from to freely convert between dates.
       //Note: For now, we just need to check one of them and convert to the other.
       if (to.equalsIgnoreCase("utc")) {
@@ -38,6 +36,8 @@ object DateConvertor extends LazyLogging {
     }
   }
 
+  //Todo: the null check on date was not throwing the exception as expected:
+  //Look into Option for checking 'None' and handling it that way
 
 
 }
