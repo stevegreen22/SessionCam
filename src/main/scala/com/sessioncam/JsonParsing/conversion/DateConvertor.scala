@@ -49,7 +49,7 @@ class DateConvertor extends LazyLogging {
     if (to == "") {
       throw new IllegalArgumentException("Exception: Conversion 'to' must be set and not empty")
     } else if (!whitelist.contains(to)) {
-      throw new TimezoneNotSupportedException("This timezone is not supported")
+      throw new TimezoneNotSupportedException(s"The timezone $to is not supported")
     } else {
       logger.info(s"Attempting to convert date ${timezoneDetails.jodaDate} from ${timezoneDetails.timezone} to ${to}")
       val currentTimezone = DateTimeZone.forTimeZone(TimeZone.getTimeZone(timezoneDetails.timezone))
