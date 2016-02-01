@@ -18,9 +18,9 @@ import scala.swing.event._
 object SessionCamProject extends SimpleSwingApplication with LazyLogging{
 
   private var listOfTimezones = List[TimezoneDetails]()
-  private val FILTER_TIMEZONE = "Etc/UTC" //UTC -> ETC => +5 // UTC == GMT
-  private val TO_TIMEZONE = "Pacific/Marquesas"//Etc/GMT-5" //GMT+0500
-  private val DEFAULT_INPUT_LOCATION = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataInput"
+  private var FILTER_TIMEZONE = "Etc/UTC" //UTC -> ETC => +5 // UTC == GMT
+  private var TO_TIMEZONE = "Pacific/Marquesas"//Etc/GMT-5" //GMT+0500
+  private var DEFAULT_INPUT_LOCATION = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataInput"
 
   private lazy val FILE_READER_INSTANCE = new InputFileParser
   private lazy val DATE_CONVERTER_INSTANCE = new DateConvertor
@@ -111,7 +111,15 @@ object SessionCamProject extends SimpleSwingApplication with LazyLogging{
     }
 
     listenTo(getListOfFilesButton, createAFilteredListButton, runConversionButton)
+    listenTo(defaultInputLocation, defaultFilter, defaultConversion)
     reactions += {
+      case EditDone(`defaultInputLocation`) =>
+        DEFAULT_INPUT_LOCATION = defaultInputLocation.text
+      case EditDone(`defaultFilter`) =>
+        FILTER_TIMEZONE = defaultFilter.text
+      case EditDone(`defaultConversion`) =>
+        TO_TIMEZONE = defaultConversion.text
+
       case ButtonClicked(`getListOfFilesButton`) =>
         if (filesListArea.text.isEmpty) {
           val files = FILE_READER_INSTANCE.getListOfFilesFromDirectory(DEFAULT_INPUT_LOCATION, List("json"))
@@ -169,7 +177,8 @@ object Main extends LazyLogging {
   private var listOfTimezones = List[TimezoneDetails]()
   private val FILTER_TIMEZONE = "Etc/UTC" //UTC -> ETC => +5 // UTC == GMT
   private val TO_TIMEZONE = "Etc/GMT-5" //GMT+0500
-  private val DEFAULT_INPUT_LOCATION = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataInput"
+//  private val DEFAULT_INPUT_LOCATION = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataInput"
+  private val DEFAULT_INPUT_LOCATION = "/home/steveg/DevResources/OtherProjects/SessionCam/dataInput"
 
   private lazy val FILE_READER_INSTANCE = new InputFileParser
   private lazy val DATE_CONVERTER_INSTANCE = new DateConvertor
@@ -227,3 +236,5 @@ object Main extends LazyLogging {
 //Done: save a list of the timezones found in the json, run them all through the converter changing as neccesary
 //Done: whitelist of accepted cannonical timezone to test against
 //todo: Filtering the lsit first removes some of the functionality - either rework it to do both or allow the option via args
+//Todo: the output file is not generated with the root data element so it can't be read back ina again. update serialiser.
+//Todo: Set a bool or something to indicate a clean slate, currently a bit higgledy.

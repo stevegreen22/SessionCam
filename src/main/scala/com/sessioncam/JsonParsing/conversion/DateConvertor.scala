@@ -34,7 +34,8 @@ class DateConvertor extends LazyLogging {
   private val whitelist = buildTimezoneWhitelist
 
   private def buildTimezoneWhitelist : List[String] = {
-    io.Source.fromFile("/Users/SteveGreen/Development/Dev Workspace/SessionCam/src/main/TimezoneWhitelist").getLines.toList
+//    io.Source.fromFile("/Users/SteveGreen/Development/Dev Workspace/SessionCam/src/main/TimezoneWhitelist").getLines.toList
+    io.Source.fromFile("/home/steveg/DevResources/OtherProjects/SessionCam/src/main/TimezoneWhitelist").getLines.toList
   }
 
 

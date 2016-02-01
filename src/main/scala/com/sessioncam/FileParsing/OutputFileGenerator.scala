@@ -10,11 +10,17 @@ import com.typesafe.scalalogging.LazyLogging
   *
   * Purpose of the class is to create a file in a location (specified or not) and write the contents to it.
   */
-case class OutputFileGenerator(saveFileLocation: String = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataOutput",
-                          var fileName: String = "JsonOutputFile",
-                          fileExtension: String = ".json",
-                          fileContents: String) extends LazyLogging{
+//case class OutputFileGenerator(saveFileLocation: String = "/Users/steveGreen/Development/Dev Workspace/SessionCam/dataOutput",
+//                          var fileName: String = "JsonOutputFile",
+//                          fileExtension: String = ".json",
+//                          fileContents: String) extends LazyLogging{
 
+//Todo: if the directory doesn't exist then I need to create it.
+
+case class OutputFileGenerator(saveFileLocation: String = "/home/steveg/DevResources/OtherProjects/SessionCam/dataOutput",
+                               var fileName: String = "JsonOutputFile",
+                               fileExtension: String = ".json",
+                               fileContents: String) extends LazyLogging{
   object OutputFileGenerator {
 
     private var completeFilename = saveFileLocation + "/" + fileName + fileExtension
@@ -23,7 +29,7 @@ case class OutputFileGenerator(saveFileLocation: String = "/Users/steveGreen/Dev
     //Version 4
     def createOutputFile(): Unit = {
       try {
-        if (doesFileExist(completeFilename)) {
+        while (doesFileExist(completeFilename)) {
           createNewFilename
         }
         logger.info(s"Writing contents to file (${fileName}) with extension ${fileExtension} to: ${saveFileLocation}")
